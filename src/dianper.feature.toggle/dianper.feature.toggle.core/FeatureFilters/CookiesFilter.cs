@@ -1,24 +1,24 @@
-﻿namespace dianper.feature.toggle.web.Filters
+﻿namespace dianper.feature.toggle.core.FeatureFilters
 {
     using Microsoft.AspNetCore.Http;
     using Microsoft.FeatureManagement;
     using System.Threading.Tasks;
 
-    [FilterAlias("Headers")]
-    public class HeadersFilter : IFeatureFilter
+    [FilterAlias("Cookies")]
+    public class CookiesFilter : IFeatureFilter
     {
         private readonly IHttpContextAccessor httpContextAccessor;
 
-        public HeadersFilter(IHttpContextAccessor httpContextAccessor)
+        public CookiesFilter(IHttpContextAccessor httpContextAccessor)
         {
             this.httpContextAccessor = httpContextAccessor;
         }
 
         public Task<bool> EvaluateAsync(FeatureFilterEvaluationContext context)
         {
-            if (this.httpContextAccessor.HttpContext.Request.Headers.TryGetValue(context.FeatureName, out var headersValue) &&
-                !string.IsNullOrEmpty(headersValue) &&
-                bool.TryParse(headersValue, out var result))
+            if (this.httpContextAccessor.HttpContext.Request.Cookies.TryGetValue(context.FeatureName, out var cookieValue) &&
+                !string.IsNullOrEmpty(cookieValue) &&
+                bool.TryParse(cookieValue, out var result))
             {
                 return Task.FromResult(result);
             }

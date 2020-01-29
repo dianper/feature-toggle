@@ -1,6 +1,6 @@
 ﻿namespace dianper.feature.toggle.web
 {
-    using dianper.feature.toggle.web.Filters;
+    using dianper.feature.toggle.core.FeatureFilters;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.AspNetCore.Http;
@@ -23,7 +23,7 @@
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddMvc();
             services.AddFeatureManagement()
-                .AddFeatureFilter<CookieFilter>()
+                .AddFeatureFilter<CookiesFilter>()
                 .AddFeatureFilter<HeadersFilter>()
                 .AddFeatureFilter<QueryStringFilter>()
                 .AddFeatureFilter<SettingsFilter>();

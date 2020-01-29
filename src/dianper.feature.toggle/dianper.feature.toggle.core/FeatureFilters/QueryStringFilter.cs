@@ -1,4 +1,4 @@
-﻿namespace dianper.feature.toggle.web.Filters
+﻿namespace dianper.feature.toggle.core.FeatureFilters
 {
     using Microsoft.AspNetCore.Http;
     using Microsoft.FeatureManagement;
