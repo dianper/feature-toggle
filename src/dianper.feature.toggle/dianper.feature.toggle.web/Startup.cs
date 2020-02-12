@@ -26,7 +26,8 @@
                 .AddFeatureFilter<CookiesFilter>()
                 .AddFeatureFilter<HeadersFilter>()
                 .AddFeatureFilter<QueryStringFilter>()
-                .AddFeatureFilter<SettingsFilter>();
+                .AddFeatureFilter<SettingsFilter>()
+                .AddFeatureFilter<CustomFilter>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

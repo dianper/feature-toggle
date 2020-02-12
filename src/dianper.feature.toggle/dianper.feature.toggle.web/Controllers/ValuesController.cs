@@ -22,12 +22,14 @@
             var taskA = featureManager.IsEnabledAsync("FeatureA");
             var taskB = featureManager.IsEnabledAsync("FeatureB");
             var taskC = featureManager.IsEnabledAsync("FeatureC");
+            var taskD = featureManager.IsEnabledAsync("FeatureD");
 
             var tasks = new List<Task<bool>>
             {
                 taskA,
                 taskB,
-                taskC
+                taskC,
+                taskD
             };
 
             await Task.WhenAll(tasks);
@@ -36,35 +38,11 @@
             {
                 $"FeatureA: { taskA.Result }",
                 $"FeatureB: { taskB.Result }",
-                $"FeatureC: { taskC.Result }"
+                $"FeatureC: { taskC.Result }",
+                $"FeatureD: { taskD.Result }"
             };
 
             return result.ToArray();
-        }
-
-        // GET api/values/5
-        [HttpGet("{id}")]
-        public string Get(int id)
-        {
-            return "value";
-        }
-
-        // POST api/values
-        [HttpPost]
-        public void Post([FromBody]string value)
-        {
-        }
-
-        // PUT api/values/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody]string value)
-        {
-        }
-
-        // DELETE api/values/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
         }
     }
 }
