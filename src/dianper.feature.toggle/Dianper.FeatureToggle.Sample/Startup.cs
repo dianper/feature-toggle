@@ -1,9 +1,7 @@
-﻿namespace dianper.feature.toggle.web
+﻿namespace Dianper.FeatureToggle.Sample
 {
-    using dianper.feature.toggle.core.FeatureFilters;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
-    using Microsoft.AspNetCore.Http;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.FeatureManagement;
@@ -20,14 +18,11 @@
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            services.AddHttpContextAccessor();
             services.AddMvc();
             services.AddFeatureManagement()
                 .AddFeatureFilter<CookiesFilter>()
-                .AddFeatureFilter<HeadersFilter>()
-                .AddFeatureFilter<QueryStringFilter>()
-                .AddFeatureFilter<SettingsFilter>()
-                .AddFeatureFilter<CustomFilter>();
+                .AddFeatureFilter<QueryStringFilter>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

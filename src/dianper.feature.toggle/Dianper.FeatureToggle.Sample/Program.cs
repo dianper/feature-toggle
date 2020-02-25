@@ -1,4 +1,4 @@
-﻿namespace dianper.feature.toggle.web
+﻿namespace Dianper.FeatureToggle.Sample
 {
     using Microsoft.AspNetCore;
     using Microsoft.AspNetCore.Hosting;

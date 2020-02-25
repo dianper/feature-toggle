@@ -1,4 +1,4 @@
-﻿namespace dianper.feature.toggle.web.Controllers
+﻿namespace Dianper.FeatureToggle.Sample.Controllers
 {
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.FeatureManagement;
@@ -19,20 +19,12 @@
         [HttpGet]
         public async Task<IEnumerable<string>> Get()
         {
-            var taskA = featureManager.IsEnabledAsync("FeatureA");
-            var taskB = featureManager.IsEnabledAsync("FeatureB");
-            var taskC = featureManager.IsEnabledAsync("FeatureC");
-            var taskD = featureManager.IsEnabledAsync("FeatureD");
+            var taskA = this.featureManager.IsEnabledAsync("FeatureA");
+            var taskB = this.featureManager.IsEnabledAsync("FeatureB");
+            var taskC = this.featureManager.IsEnabledAsync("FeatureC");
+            var taskD = this.featureManager.IsEnabledAsync("FeatureD");
 
-            var tasks = new List<Task<bool>>
-            {
-                taskA,
-                taskB,
-                taskC,
-                taskD
-            };
-
-            await Task.WhenAll(tasks);
+            await Task.WhenAll(taskA, taskB, taskC, taskD);
 
             var result = new List<string>
             {
