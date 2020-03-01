@@ -1,7 +1,9 @@
-﻿namespace Dianper.FeatureToggle
+﻿namespace Dianper.FeatureToggle.Filters
 {
+    using Dianper.FeatureToggle.Extensions;
     using Microsoft.AspNetCore.Http;
     using Microsoft.FeatureManagement;
+    using System;
     using System.Threading.Tasks;
 
     [FilterAlias("QueryString")]
@@ -11,19 +13,12 @@
 
         public QueryStringFilter(IHttpContextAccessor httpContextAccessor)
         {
-            this.httpContextAccessor = httpContextAccessor;
+            this.httpContextAccessor = httpContextAccessor ?? throw new ArgumentNullException(nameof(httpContextAccessor));
         }
 
         public Task<bool> EvaluateAsync(FeatureFilterEvaluationContext context)
         {
-            if (this.httpContextAccessor.HttpContext.Request.Query.TryGetValue(context.FeatureName, out var queryStringValue) &&
-                !string.IsNullOrEmpty(queryStringValue) &&
-                bool.TryParse(queryStringValue, out var result))
-            {
-                return Task.FromResult(result);
-            }
-
-            return Task.FromResult(false);
+            return Task.FromResult(this.httpContextAccessor.GetFromQueryString(context.FeatureName));
         }
     }
 }

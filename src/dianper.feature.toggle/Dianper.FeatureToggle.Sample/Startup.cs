@@ -1,5 +1,6 @@
 ﻿namespace Dianper.FeatureToggle.Sample
 {
+    using Dianper.FeatureToggle.Filters;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.Extensions.Configuration;
@@ -22,6 +23,7 @@
             services.AddMvc();
             services.AddFeatureManagement()
                 .AddFeatureFilter<CookiesFilter>()
+                .AddFeatureFilter<HeadersFilter>()
                 .AddFeatureFilter<QueryStringFilter>();
         }
 
