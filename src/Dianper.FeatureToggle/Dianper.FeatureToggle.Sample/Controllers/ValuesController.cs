@@ -9,6 +9,10 @@
     public class ValuesController : Controller
     {
         private readonly IFeatureManager featureManager;
+        private const string FeatureA = "FeatureA";
+        private const string FeatureB = "FeatureB";
+        private const string FeatureC = "FeatureC";
+        private const string FeatureD = "FeatureD";
 
         public ValuesController(IFeatureManager featureManager)
         {
@@ -19,10 +23,10 @@
         [HttpGet]
         public async Task<IEnumerable<string>> Get()
         {
-            var taskA = this.featureManager.IsEnabledAsync("FeatureA");
-            var taskB = this.featureManager.IsEnabledAsync("FeatureB");
-            var taskC = this.featureManager.IsEnabledAsync("FeatureC");
-            var taskD = this.featureManager.IsEnabledAsync("FeatureD");
+            var taskA = this.featureManager.IsEnabledAsync(FeatureA);
+            var taskB = this.featureManager.IsEnabledAsync(FeatureB);
+            var taskC = this.featureManager.IsEnabledAsync(FeatureC);
+            var taskD = this.featureManager.IsEnabledAsync(FeatureD);
 
             await Task.WhenAll(taskA, taskB, taskC, taskD);
 
