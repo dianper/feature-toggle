@@ -1,2 +1,91 @@
-# feature-toggle
-Simple example using Feature Toggle
+# Feature Toggle Core
+Custom example using Microsoft.FeatureManagement
+
+The features can be enabled by
+
+* Cookies
+* Headers
+* QueryString
+
+## How to use
+
+### Toggle Declaration
+
+```javascript
+
+// appsettings.json
+
+"FeatureManagement": {
+  "FeatureA": false,
+  "FeatureB": false,
+  "FeatureC": {
+    "EnabledFor": [
+      {
+        "Name": "Cookies"
+      },
+      {
+        "Name": "QueryString"
+      }
+    ]
+  },
+  "FeatureD": {
+    "EnabledFor": [
+      {
+        "Name": "Cookies"
+      }
+    ]
+  }
+}
+```
+
+### Service Registration
+
+```c#
+// Startup.cs
+
+public void ConfigureServices(IServiceCollection services)
+{
+    services.AddHttpContextAccessor();
+    services.AddMvc();
+    services.AddFeatureManagement()
+        .AddFeatureFilter<CookiesFilter>()
+        .AddFeatureFilter<HeadersFilter>()
+        .AddFeatureFilter<QueryStringFilter>();
+}
+```
+
+### Dependency Injection
+
+```c#
+private readonly IFeatureManager featureManager;
+
+public DummyClass(IFeatureManager featureManager)
+{
+    this.featureManager = featureManager;
+}
+```
+
+### Check
+
+```c#
+private const string FeatureName = "FeatureC";
+
+public async Task DummyMethod()
+{
+    if(await this.featureManager.IsEnabledAsync(FeatureName))
+    {
+      // Do something
+    }
+}
+```
+
+### Running
+
+By QueryString
+
+```
+http://localhost:55714/api/values?FeatureC=true
+```
+
+## Reference
+[Microsoft.FeatureManagement](https://github.com/microsoft/FeatureManagement-Dotnet)
