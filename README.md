@@ -79,8 +79,13 @@ public async Task DummyMethod()
 ### Build
 
 ```sh
-cd .\src\Dianper.FeatureToggle
 dotnet build
+```
+
+### Test
+
+```sh
+dotnet test
 ```
 
 ### Running
