@@ -1,5 +1,4 @@
-# Feature Toggle Core
-Custom example using Microsoft.FeatureManagement
+# On/Off Feature Toggle Core
 
 The features can be enabled by
 
@@ -14,7 +13,6 @@ The features can be enabled by
 ```javascript
 
 // appsettings.json
-
 "FeatureManagement": {
   "FeatureA": false,
   "FeatureB": false,
@@ -42,7 +40,6 @@ The features can be enabled by
 
 ```c#
 // Startup.cs
-
 public void ConfigureServices(IServiceCollection services)
 {
     services.AddHttpContextAccessor();
@@ -79,12 +76,21 @@ public async Task DummyMethod()
 }
 ```
 
+### Build
+
+```sh
+cd .\src\Dianper.FeatureToggle
+dotnet build
+```
+
 ### Running
 
-By QueryString
+Turn on by querystring
 
 ```
-http://localhost:55714/api/values?FeatureC=true
+dotnet run --project .\src\Dianper.FeatureToggle\Dianper.FeatureToggle.Sample
+
+http://localhost:55715/api/values?FeatureC=true
 ```
 
 ## Reference
