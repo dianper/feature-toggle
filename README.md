@@ -1,3 +1,5 @@
+[![CircleCI](https://circleci.com/gh/dianper/feature-toggle.svg?style=shield)](https://circleci.com/gh/dianper/feature-toggle)
+
 # On/Off Feature Toggle Core
 
 The features can be enabled by
