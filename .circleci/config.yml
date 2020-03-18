@@ -1,14 +1,17 @@
 version: 2.1
 jobs:
   build:
-    working_directory: ~/feature-toggle/src/Dianper.FeatureToggle
+    working_directory: ~/feature-toggle
     docker:
       - image: mcr.microsoft.com/dotnet/core/sdk:2.2
     steps:
       - checkout
       - run:
-          name: restore
+          name: Restore Packages
           command: dotnet restore
       - run:
-          name: build
+          name: Build
           command: dotnet build
+      - run:
+          name: Tests
+          command: dotnet test

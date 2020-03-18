@@ -72,7 +72,9 @@
         [InlineData("123", false)]
         [InlineData("true", true)]
         [InlineData("false", false)]
+#pragma warning disable xUnit1026 // Theory methods should use all of their parameters
         public void GetFromCookies_WhenCookieExists_ReturnsExpectedValue(string cookieValue, bool expectedValue)
+#pragma warning restore xUnit1026 // Theory methods should use all of their parameters
         {
             // Arrange
             this.httpContextAccessorMock
