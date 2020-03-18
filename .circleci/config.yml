@@ -1,12 +1,14 @@
- version: 2.1
-
- orbs:
-  win: circleci/windows@2.2.0
-
- jobs:
-   build:
-     executor: win/default     
-    
-     steps:
-       - checkout
-       - run: dotnet build
+version: 2.1
+jobs:
+  build:
+    working_directory: ~/feature-toggle/src/Dianper.FeatureToggle
+    docker:
+      - image: mcr.microsoft.com/dotnet/core/sdk:2.2
+    steps:
+      - checkout
+      - run:
+          name: restore
+          command: dotnet restore
+      - run:
+          name: build
+          command: dotnet build
